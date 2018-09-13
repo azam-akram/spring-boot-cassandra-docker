@@ -1,0 +1,19 @@
+tmp
+.history
+dist
+.idea
+*.iml
+*.ipr
+*.iws
+/bin
+/out
+.idea_modules
+.classpath
+.project
+/RUNNING_PID
+atlassian-ide-plugin.xml
+# /
+/work
+/.settings
+.gradle
+build/

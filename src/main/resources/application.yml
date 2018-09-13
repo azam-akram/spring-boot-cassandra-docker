@@ -1,0 +1,8 @@
+server:
+  servlet:
+    context-path: /bookstore/${application.api.version}
+  port: 8089
+
+application:
+  api:
+    version: v1
