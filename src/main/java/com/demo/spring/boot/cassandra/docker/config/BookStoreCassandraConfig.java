@@ -17,29 +17,25 @@ import org.springframework.data.cassandra.repository.config.EnableCassandraRepos
 import java.util.Collections;
 import java.util.List;
 
-@Getter
 @Configuration
-@ConfigurationProperties("spring.data.cassandra")
-@PropertySource("classpath:cassandra_config.yml")
-@EnableCassandraRepositories(basePackages = "com.demo.spring.boot.cassandra.docker.repository")
 public class BookStoreCassandraConfig extends AbstractCassandraConfiguration {
 
-    @Value("${port}")
+    @Value("${spring.data.cassandra.port}")
     private int port;
 
-    @Value("${contact-points}")
+    @Value("${spring.data.cassandra.contact-points}")
     private String contactPoints;
 
-    @Value("${keyspace-name}")
+    @Value("${spring.data.cassandra.keyspace-name}")
     private String keySpace;
 
-    @Value("${user-name}")
+    @Value("${spring.data.cassandra.user-name}")
     private String userName;
 
-    @Value("${password}")
+    @Value("${spring.data.cassandra.password}")
     private String password;
 
-    @Value("${entity-base-package}")
+    @Value("${spring.data.cassandra.entity-base-package}")
     private String entityBasePackage;
 
     @Override
