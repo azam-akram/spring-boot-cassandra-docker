@@ -6,7 +6,6 @@ server:
 application:
   api:
     version: v1
-    # Cassandra configuration for odp common errors
 
 spring:
   data:

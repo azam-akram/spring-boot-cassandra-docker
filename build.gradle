@@ -1,12 +1,15 @@
 buildscript {
     ext {
         springBootVersion = '2.0.1.RELEASE'
+        gradleDockerVersion   = "1.2"
     }
     repositories {
         mavenCentral()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        // Dependency for docker
+        classpath("se.transmode.gradle:gradle-docker:${gradleDockerVersion}")
     }
 }
 
@@ -19,6 +22,7 @@ apply plugin: 'project-report'
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'docker'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -40,4 +44,19 @@ dependencies {
     compile "org.springframework.boot:spring-boot-configuration-processor"
 
     testCompile 'org.springframework.boot:spring-boot-starter-test'
+}
+
+group 'spring-boot-cassandra-docker'
+
+// build docker image
+task buildDocker(type: Docker, dependsOn: build) {
+    push = false
+    applicationName = jar.baseName
+    dockerfile = file('Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
 }

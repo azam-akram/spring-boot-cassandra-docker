@@ -21,8 +21,8 @@ import java.util.UUID;
 @Table("book_store_entity")
 public class BookStoreEntity {
 
-    @PrimaryKeyColumn(name = "id", type = PrimaryKeyType.PARTITIONED)
-    private UUID id;
+    @PrimaryKeyColumn(name = "uuid", type = PrimaryKeyType.PARTITIONED)
+    private UUID uuid;
 
     @Column("title")
     private String title;
@@ -30,8 +30,8 @@ public class BookStoreEntity {
     @Column("writer")
     private String writer;
 
-    /*@Column(value = "publishing_date")
+    @Column(value = "publishing_date")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    private LocalDateTime publishingDate;*/
+    private LocalDateTime publishingDate;
 }

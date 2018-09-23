@@ -5,6 +5,7 @@ import com.demo.spring.boot.cassandra.docker.repository.BookStoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,17 +22,13 @@ public class BookStoreServiceImpl implements BookStoreService {
 
     @Override
     public List<BookStoreEntity> getAllBookStores() {
+        bookStoreRepository.save(getBookStoreEntity());
         return bookStoreRepository.findAll();
     }
 
     @Override
-    public BookStoreEntity getBookStoreById(UUID id) {
-        Optional<BookStoreEntity> bookStoreEntity = bookStoreRepository.findByUuid(id);
-        if(bookStoreEntity.get() != null) {
-            return bookStoreEntity.get();
-        } else {
-            return null;
-        }
+    public Optional<BookStoreEntity> getBookStoreById(UUID id) {
+        return bookStoreRepository.findByUuid(id);
     }
 
     @Override
@@ -51,18 +48,20 @@ public class BookStoreServiceImpl implements BookStoreService {
 
     private BookStoreEntity getBookStoreEntity() {
         BookStoreEntity entity = BookStoreEntity.builder()
-                .id(UUID.randomUUID())
+                .uuid(UUID.randomUUID())
                 .title("book 1")
                 .writer("writer 1")
+                .publishingDate(LocalDateTime.now())
                 .build();
         return entity;
     }
 
     private BookStoreEntity getModifiedBookStoreEntity() {
         BookStoreEntity entity = BookStoreEntity.builder()
-                .id(UUID.randomUUID())
+                .uuid(UUID.randomUUID())
                 .title("modified book title")
                 .writer("writer 1")
+                .publishingDate(LocalDateTime.now())
                 .build();
         return entity;
     }
