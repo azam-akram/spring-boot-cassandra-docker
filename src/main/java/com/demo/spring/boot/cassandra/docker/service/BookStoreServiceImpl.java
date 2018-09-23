@@ -25,44 +25,42 @@ public class BookStoreServiceImpl implements BookStoreService {
     }
 
     @Override
-    public BookStoreEntity getBookStoreById(Integer id) {
-        Optional<BookStoreEntity> errorDetailEntity = bookStoreRepository.findById(id);
-        if(errorDetailEntity.get() != null) {
-            return errorDetailEntity.get();
+    public BookStoreEntity getBookStoreById(UUID id) {
+        Optional<BookStoreEntity> bookStoreEntity = bookStoreRepository.findByUuid(id);
+        if(bookStoreEntity.get() != null) {
+            return bookStoreEntity.get();
         } else {
             return null;
         }
     }
 
     @Override
-    public BookStoreEntity saveBookStore(BookStoreEntity errorDetailEntity) {
-        return bookStoreRepository.save(errorDetailEntity);
+    public BookStoreEntity saveBookStore(BookStoreEntity bookStoreEntity) {
+        return bookStoreRepository.save(bookStoreEntity);
     }
 
     @Override
-    public BookStoreEntity updateBookStore(BookStoreEntity errorDetailEntity) {
+    public BookStoreEntity updateBookStore(BookStoreEntity bookStoreEntity) {
         return bookStoreRepository.save(getModifiedBookStoreEntity());
     }
 
     @Override
-    public void deleteBookStore(Integer id) {
+    public void deleteBookStore(UUID id) {
         bookStoreRepository.deleteById(id);
     }
 
-    // TODO: Just for experiments un till we have full controller ready, Must be deleted from here
     private BookStoreEntity getBookStoreEntity() {
         BookStoreEntity entity = BookStoreEntity.builder()
-                .id(1)
+                .id(UUID.randomUUID())
                 .title("book 1")
                 .writer("writer 1")
                 .build();
         return entity;
     }
 
-    // TODO: Just for experiments un till we have full controller ready, Must be deleted from here
     private BookStoreEntity getModifiedBookStoreEntity() {
         BookStoreEntity entity = BookStoreEntity.builder()
-                .id(1)
+                .id(UUID.randomUUID())
                 .title("modified book title")
                 .writer("writer 1")
                 .build();

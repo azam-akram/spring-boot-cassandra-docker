@@ -9,12 +9,12 @@ public interface BookStoreService {
 
     List<BookStoreEntity> getAllBookStores();
 
-    BookStoreEntity getBookStoreById(Integer id);
+    BookStoreEntity getBookStoreById(UUID id);
 
-    BookStoreEntity saveBookStore(BookStoreEntity errorDetailEntity);
+    BookStoreEntity saveBookStore(BookStoreEntity bookStoreEntity);
 
-    BookStoreEntity updateBookStore(BookStoreEntity errorDetailEntity);
+    BookStoreEntity updateBookStore(BookStoreEntity bookStoreEntity);
 
-    void deleteBookStore(Integer id);
+    void deleteBookStore(UUID id);
 
 }
