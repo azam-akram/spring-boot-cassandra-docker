@@ -24,14 +24,14 @@ public class BookStoreEntity {
     @PrimaryKeyColumn(name = "uuid", type = PrimaryKeyType.PARTITIONED)
     private UUID uuid;
 
-    @Column("title")
-    private String title;
-
-    @Column("writer")
-    private String writer;
-
     @Column(value = "publishing_date")
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     private LocalDateTime publishingDate;
+
+    @Column(value = "title")
+    private String title;
+
+    @Column(value = "writer")
+    private String writer;
 }
