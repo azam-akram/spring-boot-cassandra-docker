@@ -1,6 +1,6 @@
 # spring-boot-cassandra-docker
 
-This projects demonstrates how to sets up the Spring Boot Microservice, store books information in Cassandra (NoSQL) database, and expose REST APIS to interact with the service.  
+This projects demonstrates how to setup the Spring Boot Microservice, store books information in Cassandra (NoSQL) database, and expose REST APIS to interact with the service.  
 ### Frameworks
 
 * **Spring Boot:** "Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run"." Read (https://spring.io/projects/spring-boot)
