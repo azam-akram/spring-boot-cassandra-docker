@@ -1,11 +1,13 @@
 # spring-boot-cassandra-docker
 
-This projects demonstrates how to setup the Spring Boot Microservice, store books information in Cassandra (NoSQL) database, and expose REST APIS to interact with the service.  
+This projects demonstrates how to setup the Spring Boot Microservice, store information in Cassandra (NoSQL) database, and expose REST APIS to interact with the service.  
+
 ### Frameworks
 
-* **Spring Boot:** "Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run"." Read (https://spring.io/projects/spring-boot)
-* **Apache Zookeeper:** "ZooKeeper is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services." (https://zookeeper.apache.org/)
-* **Docker-compose:** Docker Compose is a tool for defining and running multi-container Docker applications. Read more (https://docs.docker.com/compose/)
+* Spring Boot
+* Cassandra
+* Apache Zookeeper
+* Docker-compose
 
 ### Prerequisites
 
