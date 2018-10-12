@@ -208,8 +208,6 @@ public class BookStoreController {
 
 If you want to test application locally then run the docker compose by,
 
-First run the docker compose
-
 ```bash
 docker-compose up -d
 ```
