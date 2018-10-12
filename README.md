@@ -11,7 +11,7 @@ This projects demonstrates how to setup the Spring Boot Microservice, store info
 
 ### Prerequisites
 
-I used docker-compose to run Cassandra and Zookeeper containers, so no need to install them locally.
+I used docker-compose to run Cassandra and Zookeeper containers.
 
 ```docker-compose
 version: '2'
