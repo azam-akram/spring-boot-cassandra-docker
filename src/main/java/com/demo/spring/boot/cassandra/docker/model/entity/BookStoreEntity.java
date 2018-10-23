@@ -1,4 +1,4 @@
-package com.demo.spring.boot.cassandra.docker.entity;
+package com.demo.spring.boot.cassandra.docker.model.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -18,7 +18,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table("book_store_entity")
+@Table("book_store")
 public class BookStoreEntity {
 
     @PrimaryKeyColumn(name = "uuid", type = PrimaryKeyType.PARTITIONED)

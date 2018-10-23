@@ -76,6 +76,7 @@ public class BookStoreCassandraConfig extends AbstractCassandraConfiguration {
         CassandraCqlClusterFactoryBean bean = new CassandraCqlClusterFactoryBean();
         bean.setKeyspaceCreations(getKeyspaceCreations());
         bean.setContactPoints(contactPoints);
+        bean.setPort(port);
         bean.setUsername(userName);
         bean.setPassword(password);
         return bean;

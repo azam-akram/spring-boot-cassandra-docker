@@ -16,4 +16,4 @@ spring:
       schema-action: create_if_not_exists
       user-name: cassandra
       password: cassandra
-      entity-base-package: com.demo.spring.boot.cassandra.docker.repository
+      entity-base-package: com.demo.spring.boot.cassandra.docker.model.entity
