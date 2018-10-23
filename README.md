@@ -1,6 +1,6 @@
 # spring-boot-cassandra-docker
 
-This projects demonstrates how to setup the Spring Boot Microservice, store information in Cassandra (NoSQL) database, and expose REST APIS to interact with the service.  
+This projects demonstrates how to setup the Spring Boot Microservice, store data in Cassandra database, and exposes REST APIS to interact with the service.  
 
 ### Frameworks
 
@@ -49,7 +49,7 @@ spring:
       schema-action: create_if_not_exists
       user-name: cassandra
       password: cassandra
-      entity-base-package: com.demo.spring.boot.cassandra.docker.repository
+      entity-base-package: com.demo.spring.boot.cassandra.docker.model.entity
 ```
 
 Need to configure Cassandra,
@@ -122,7 +122,7 @@ public class BookStoreCassandraConfig extends AbstractCassandraConfiguration {
 BookStoreEntity class is a simple POJO,
 
 ```java
-@Table("book_store_entity")
+@Table("book_store")
 public class BookStoreEntity {
 
     @PrimaryKeyColumn(name = "uuid", type = PrimaryKeyType.PARTITIONED)
@@ -156,43 +156,33 @@ Controller to expose REST APIs,
 @RestController
 @RequestMapping(path = "/books")
 public class BookStoreController {
-
+    
     @Autowired
     BookStoreService bookStoreService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> getAllBooks() {
         log.trace("Reading all books");
-        try {
-            return ok(bookStoreService.getAllBookStores());
-        } catch (Exception e) {
-            log.error("Catch exception when reading books records.");
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return new ResponseEntity<>(bookStoreService.getAllBookStores(), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{uuid}",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<?> getBookById(@PathVariable(value = "uuid") final UUID uuid) {
         log.trace("Reading book information by Id");
-        Optional<BookStoreEntity> optionalBookStoreEntity = bookStoreService.getBookStoreById(uuid);
-        if (optionalBookStoreEntity.isPresent()) {
-            return new ResponseEntity<>(bookStoreService.getBookStoreById(uuid), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+        return new ResponseEntity<>(bookStoreService.getBookStoreById(uuid), HttpStatus.OK);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> saveBook(@Valid @RequestBody final BookStoreEntity bookStoreEntity) {
+    public ResponseEntity<?> saveBook(@Valid @RequestBody final BookStoreInput input) {
         log.trace("Saving book");
-        return new ResponseEntity<>(bookStoreService.saveBookStore(bookStoreEntity), HttpStatus.OK);
+        return new ResponseEntity<>(bookStoreService.saveBookStore(input), HttpStatus.OK);
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<?> updateBook(@Valid @RequestBody final BookStoreEntity bookStoreEntity) {
+    public ResponseEntity<?> updateBook(@Valid @RequestBody final BookStoreInput input) {
         log.trace("Update book");
-        return new ResponseEntity<>(bookStoreService.updateBookStore(bookStoreEntity), HttpStatus.OK);
+        return new ResponseEntity<>(bookStoreService.updateBookStore(input), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/{uuid}")
